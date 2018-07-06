@@ -1,0 +1,22 @@
+{
+    "name": "jinyphp/installer",
+    "description": "jinyphp application installer.",
+    "keywords": ["jinyphp"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hojin lee",
+            "email": "infohojin@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jiny\\Installer\\": "src/"
+        }
+    },
+    "require": {
+    },
+    "bin": [
+        "jiny"
+    ]
+}

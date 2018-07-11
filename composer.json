@@ -15,6 +15,8 @@
         }
     },
     "require": {
+        "ext-zip": "*",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "bin": [
         "jiny"

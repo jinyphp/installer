@@ -7,4 +7,7 @@ if (file_exists(__DIR__.'/../../autoload.php')) {
     require __DIR__.'/vendor/autoload.php';
 }
 
-new \Jiny\Installer\Setup($argv);
+$app = new Symfony\Component\Console\Application('jiny Installer', '0.1.0');
+$app->add(new Jiny\Installer\NewCommand);
+
+$app->run();

@@ -49,24 +49,25 @@ class Setup
      */
     public function newProject($project)
     {
-        echo "새로운 프로젝트를 생성합니다.\n";
-        echo "최신 버전의 배포본을 다운로드 합니다...\n";
+        echo "Creating new project\n";
+        echo "download last version from git. please, wait time\n";
         //if (!is_dir($project)) mkdir($project);
 
         // 원본 파일을 다운로드 받습니다.
         $zipFile = "0.1.6.zip";
-        $this->download($zipFile);
+        //////$this->download($zipFile);
 
         // 압축 파일을 
         $directory = ".".DIRECTORY_SEPARATOR.$project.DIRECTORY_SEPARATOR;
         $this->extract($zipFile, $directory);
 
         // 파일을 삭제합니다.
-        $this->cleanUp($zipFile);
+        //////$this->cleanUp($zipFile);
 
-        /*
+        
         $composer = $this->findComposer();
-
+        echo $composer;
+        
         $commands = [
             $composer.' install --no-scripts',
             $composer.' run-script post-root-package-install',
@@ -76,7 +77,17 @@ class Setup
 
         $process = new Process(implode(' && ', $commands), $directory, null, null, null);
 
-        */
+        if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
+            $process->setTty(true);
+        }
+
+        $process->run(function ($type, $line) use ($output) {
+            $output->write($line);
+        });
+
+        $output->writeln('<comment>Application ready! Build something amazing.</comment>');
+
+    
 
     }
 
@@ -114,7 +125,7 @@ class Setup
         $archive->open($zipFile);
 
         $archive->extractTo(".");
-        rename("jiny-0.1.6",$directory);
+        rename("jiny-0.1.6", $directory);
 
         $archive->close();
 

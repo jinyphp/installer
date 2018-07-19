@@ -1,6 +1,6 @@
 {
-    "name": "jinyphp/installer",
-    "description": "jinyphp application installer.",
+    "name": "jiny/installer",
+    "description": "jiny application installer.",
     "keywords": ["jinyphp"],
     "license": "MIT",
     "authors": [
@@ -16,7 +16,10 @@
     },
     "require": {
         "ext-zip": "*",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "symfony/console": "~3.0|~4.0",
+        "symfony/filesystem": "~3.0|~4.0",
+        "symfony/process": "~3.0|~4.0"
     },
     "bin": [
         "jiny"

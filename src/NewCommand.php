@@ -16,6 +16,9 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 class NewCommand extends Command
 {
+
+    public $_version;
+
     /**
      * Configure the command options.
      *
@@ -126,23 +129,28 @@ class NewCommand extends Command
     {
 
         $path = "https://jinyphp.github.io/installer/index.html";
-        $response = (new Client)->get($path.$filename);
-        file_put_contents("version.json", $response->getBody());
+        $response1 = (new Client)->get($path);
+        $version = json_decode($response1->getBody());
 
-        echo $response."\n";
-
-
-        exit;
-
+        //
+        //
         switch ($version) {
             case 'develop':
-                //$filename = 'latest-develop.zip';
+                $this->_version = $version->develop;               
+                $filename = $this->_version.".zip";;
                 break;
             case 'master':
-                // $filename = 'latest.zip';
-                $filename = "0.1.7.zip";
-                break;
+                $this->_version = $version->master;               
+                $filename = $this->_version.".zip";
+
+            default:
+                $this->_version = $version->last;               
+                $filename = $this->_version.".zip";
+                
         }
+
+        //$filename = $version->last.".zip";
+        echo "Dwonload version file = ".$filename."\n\n";
 
         $path = "https://github.com/jinyphp/jiny/archive/";
         $response = (new Client)->get($path.$filename);
@@ -176,7 +184,7 @@ class NewCommand extends Command
         $archive->open($zipFile);
 
         $archive->extractTo(".");
-        rename("jiny-0.1.7", $directory);
+        rename("jiny-".$this->_version, $directory);
 
         $archive->close();
 

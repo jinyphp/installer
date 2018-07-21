@@ -130,7 +130,7 @@ class NewCommand extends Command
                 break;
             case 'master':
                 // $filename = 'latest.zip';
-                $filename = "0.1.6.zip";
+                $filename = "0.1.7.zip";
                 break;
         }
 
@@ -166,7 +166,7 @@ class NewCommand extends Command
         $archive->open($zipFile);
 
         $archive->extractTo(".");
-        rename("jiny-0.1.6", $directory);
+        rename("jiny-0.1.7", $directory);
 
         $archive->close();
 

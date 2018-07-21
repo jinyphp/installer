@@ -124,6 +124,16 @@ class NewCommand extends Command
      */
     protected function download($zipFile, $version = 'master')
     {
+
+        $path = "https://jinyphp.github.io/installer/index.html";
+        $response = (new Client)->get($path.$filename);
+        file_put_contents("version.json", $response->getBody());
+
+        echo $response."\n";
+
+
+        exit;
+
         switch ($version) {
             case 'develop':
                 //$filename = 'latest-develop.zip';

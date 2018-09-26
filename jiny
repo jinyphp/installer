@@ -1,13 +1,24 @@
 #!/usr/bin/env php
 <?php
+/*
+ * This file is part of the jinyPHP package.
+ *
+ * (c) hojinlee <infohojin@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
+ // 컴포저 오로로더 경로설정
 if (file_exists(__DIR__.'/../../autoload.php')) {
     require __DIR__.'/../../autoload.php';
 } else {
     require __DIR__.'/vendor/autoload.php';
 }
 
-$app = new Symfony\Component\Console\Application('jiny Installer', '0.1.0');
+// 콘솔 초기화
+const VERSION = "0.1.1";
+$app = new Symfony\Component\Console\Application('jiny Installer', VERSION);
 $app->add(new Jiny\Installer\NewCommand);
 
 $app->run();

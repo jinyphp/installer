@@ -1,8 +1,8 @@
 {
     "name": "jiny/installer",
-    "description": "jiny application installer.",
+    "description": "jinyPHP installer.",
     "keywords": [
-        "jiny",
+        "jinyPHP",
         "installer"
     ],
     "license": "MIT",
